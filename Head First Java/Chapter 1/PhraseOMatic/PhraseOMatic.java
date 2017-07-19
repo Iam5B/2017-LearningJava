@@ -1,4 +1,5 @@
 public class PhraseOMatic{
+
 	public static void main(String[] args){
 
 		String[] wordListOne = {"24/7","multiTier","web-based"};
@@ -18,4 +19,5 @@ public class PhraseOMatic{
 		System.out.println("What we need is a " + phrase);
 	
 	}
+	
 }
