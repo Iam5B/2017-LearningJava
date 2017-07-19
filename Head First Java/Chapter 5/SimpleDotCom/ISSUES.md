@@ -1,4 +1,5 @@
-##ISSUES
+ISSUES
+------
 *	In the SimpleDotCom.java
 	*	You should what do the following statements do.
 		>	for(int cell : locationCells){}

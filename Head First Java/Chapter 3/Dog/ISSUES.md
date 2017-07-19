@@ -1,4 +1,5 @@
-##ISSUES
+ISSUES
+------
 *	In the following progress
 	>Dog[] myDogs = new Dog[3];
 	

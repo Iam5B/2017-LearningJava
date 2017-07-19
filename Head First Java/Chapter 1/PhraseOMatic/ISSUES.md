@@ -1,4 +1,5 @@
-##ISSUES
+ISSUES
+------
 * Why the process of producing random number should be
 	> (int) (Math.random() * oneLength);
 

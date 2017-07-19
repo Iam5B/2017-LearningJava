@@ -1,4 +1,5 @@
-##ISSUES
+ISSUES
+------
 *	To build the simple mode I think you should go through certain steps:
 	*	Knowing the rules of the simple mode.
 	*	Knowing the meaning of the members and methods in the class SimpleDotCom. Including why we need certain members, and <b>what process in the game will the methods do</b>.
