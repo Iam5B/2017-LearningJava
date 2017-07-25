@@ -30,3 +30,27 @@ ISSUES
 		>}
 
 		it seems like a static method called a public method, which is not allowed, but actually not, you can view the case on page 278. Then you will find the difference.
+*	Distinguish the following methods
+	>Integer.parseInt("233");
+
+	>(new Integer(1)).intValue();
+
+*	Know the two methods of creating String object based on primitive data types.
+	> 233 \+ "" ;
+
+	> (new Double(2.33)).toString();/* do you remember that .toString() is a method inherited from class Object, it's obvious that they override the method.*/
+
+*	What does String.format() return ?
+
+*	For the class Calendar, Emmmm... , simply know it could take the job of caculate the time. And to import the class you need to add
+	>   import java.util.Calendar;
+
+	to create a instance
+
+	>   Calendar a = Calendar.getInstance();
+* My detailed answer for the second question of the test on page 311
+	
+	I think we should first recall the format of using a static method, such as
+	>   int i = Integer.parseInt("233");
+
+	in this case, we could see that a static method requies two factors, the name of method and the return type. Suppose there is a static constructor, as a constructor, it could only have a name of the constructor, but as a method, it requires the name and the return type, so here comes the conflict.
