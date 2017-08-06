@@ -17,4 +17,4 @@ ISSUES
 
 
 
-# If you finished the work above before 2017/8/9, we may go further... Now I stopped here#
+# Once finished the chapter 12, please contact me...
