@@ -10,6 +10,8 @@ public class Item{
 
 	private String image;
 
+	public Item(){}
+
 	public Item(String nameToSet, double valueToSet, int amountToSet, String imageToSet){
 
 		amount = amountToSet;
@@ -22,9 +24,27 @@ public class Item{
 
 	}
 
+	public String getImage(){
+
+		return image;
+
+	}
+
+	public void setImage(String imageToSet){
+
+		image = imageToSet;
+
+	}
+
 	public String getName(){
 
 		return name;
+
+	}
+
+	public void setName(String nameToSet){
+
+		name = nameToSet;
 
 	}
 
@@ -37,6 +57,18 @@ public class Item{
 	public double getSellValue(){
 
 		return sellValue;
+
+	}
+
+	public void setBuyValue(double valueToSet){
+
+		buyValue = valueToSet;
+
+	}
+
+	public void setSellValue(double valueToSet){
+
+		sellValue = valueToSet;
 
 	}
 
@@ -53,6 +85,12 @@ public class Item{
 			amount = amountToSet;
 
 		}
+
+	}
+
+	public boolean sameTo(Item i){
+
+		return name.equals(i.getName());
 
 	}
 
