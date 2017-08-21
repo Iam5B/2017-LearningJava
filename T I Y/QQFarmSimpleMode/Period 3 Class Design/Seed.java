@@ -22,6 +22,24 @@ public class Seed extends Item{
 
 	}
 
+	public int getExpectedHarvest(){
+
+		return expectedHarvest;
+
+	}
+
+	public void setExpectedHarvest(int expectedHarvestToSet){
+
+		expectedHarvest = expectedHarvestToSet;
+
+		if(expectedHarvest < 0){
+
+			expectedHarvest = 0;
+
+		}
+
+	}
+
 	public int getPeriodAmounts(){
 	/* 该作物的生长周期数 */
 		return periodNameList.length;
@@ -88,6 +106,38 @@ public class Seed extends Item{
 
 		}
 
+	}
+
+	public static int getCurrentPeriodNumber(long timePassed, Seed s){
+	/* 思路相同 返回当前阶段编号 */
+		double hourPassed = ((double)timePassed) / (1000.0 * 3600.0);
+
+		int i;
+
+		double[] tList = s.getPeriodTimeList();
+
+		String[] nList = s.getPeriodNameList();
+
+		for(i = 0; i < tList.length; i++){
+
+			if(hourPassed - tList[i] > 0){
+
+				hourPassed -= tList[i];
+
+				continue;
+
+			}
+
+			else{
+
+				break;
+
+			}
+
+		}
+
+		return i;
+		/* 利用了变量i */
 	}
 
 	public static String getCurrentPeriodName(long timePassed, Seed s){

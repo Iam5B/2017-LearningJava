@@ -68,7 +68,7 @@ public class Item{
 
 	public void setSellValue(double valueToSet){
 
-		sellValue = valueToSet;
+		sellValue = valueToSet;																			
 
 	}
 
