@@ -14,7 +14,3 @@ ISSUES
 	*	Can you compare it with the EventListener in the case SimpleGui1B(*I think these two  process are quite similar*).
 
 *	You can combine the previous code to finish the MiniMusicPlayer3.
-
-
-
-# Once finished the chapter 12, please contact me...

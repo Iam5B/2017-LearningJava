@@ -18,11 +18,11 @@ public class Virus implements Serializable{
 
 	public static final double foodInfectBasicPossibility = 0.1;
 
-	public static final double selfSecureBasicPossibility = 0.1;
+	public static final double selfSecureBasicPossibility = 0.0001;
 
-	public static final double deathRateBasicPossibility = 0.1;
+	public static final double deathRateBasicPossibility = 0.01;
 
-	public static final double virusOutbreakPossibility = 0.0001;
+	public static double virusOutbreakPossibility = 0.001;
 
 	public int getId(){
 
@@ -116,7 +116,19 @@ public class Virus implements Serializable{
 
 	public static boolean virusOutbreakTest(int bioMass, int deathToll){
 	/* 区域疾病爆发测试  */
-		return Math.random()<Virus.virusOutbreakPossibility * (((double)bioMass) / 50.0) * (((double)deathToll) / 25.0);
+		if(Math.random()<Virus.virusOutbreakPossibility * (((double)bioMass) / 50.0) * (((double)deathToll) / 25.0)){
+
+			virusOutbreakPossibility/=100.0;
+
+			return true;
+		
+		}
+
+		else{
+
+			return false;
+
+		}
 
 	}
 

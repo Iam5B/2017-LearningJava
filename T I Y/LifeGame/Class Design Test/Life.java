@@ -15,7 +15,7 @@ public class Life implements Serializable{
 	/* 是否吃饱 */
 	public static final double variationPossibility = 0.0001;
 	/* 遗传突变概率 */
-	public static final double newKindPossibility = 0.01;
+	public static final double newKindPossibility = 0.00001;
 	/* 新物种出现概率 */
 	public static final double lowFoodDemand = 1.0;
 
@@ -233,7 +233,7 @@ public class Life implements Serializable{
 
 		satisfied = false;
 
-		for(i = 0;i <l.size(); i++){
+		for(i = 0;i < l.size(); i++){
 
 			Life ll = l.get(i);
 
@@ -245,27 +245,17 @@ public class Life implements Serializable{
 
 			for(j = 0; j < v.size(); j++){
 
-				if(!virusList.contains(v.get(j))){
-
-					if(v.get(j).sexInfectTrial()){
-
-						virusList.add(new Virus(v.get(j)));
-
-					}
-
-				}
+				virusList.add(new Virus(v.get(j)));
 
 			}
 
 			for(j = 0; j < a.size(); j++){
 
-				if(!antiBodyList.contains(a.get(j))){
-
-					antiBodyList.add(new AntiBody(a.get(j)));
-
-				}
+				antiBodyList.add(new AntiBody(a.get(j)));
 
 			}
+
+			selfDuplicate();
 
 			selfImmune();
 
@@ -359,11 +349,17 @@ public class Life implements Serializable{
 
 			Virus v = virusList.get(i);
 
-			if(antiBodyList.contains(new AntiBody(v))){
+			int j;
 
-				virusList.remove(i);
+			for(j = 0; j < antiBodyList.size(); j++){
 
-				i--;
+				if(antiBodyList.get(j).getId() == v.getId()){
+
+					virusList.remove(i);
+
+					i--;
+
+				}
 
 			}
 

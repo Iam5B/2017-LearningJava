@@ -36,127 +36,13 @@ public class Plat implements Serializable{
 
 		for(i=0;i<10;i++)
 
-			for(j=0;j<10;j++)
-			
+			for(j=0;j<10;j++){
+
 				sectionMap[i][j]=new Section();
 
-		// lifeMap[15][12] = new Life();
-
-		// lifeMap[15][12].getVirusList().add(new Virus(1,1));
-
-		// lifeMap[88][87] = new Life(10.0,2.5);
-
-		// lifeMap[88][88] = new Life(lifeMap[88][87]);
-
-		// lifeMap[15][13] = new Life(lifeMap[15][12]);
-
-		// lifeMap[15][14] = new Life(lifeMap[15][12]);
-
-		// lifeMap[14][14] = new Life(lifeMap[15][12]);
-
+			}
+			
 	}
-
-	/* 如何进行初始化构造暂时不考虑 */
-
-	/* 如何进行初始化构造暂时不考虑 */
-
-	/* 假装这个display已经有了 */
-	/*public void display(){
-
-		frame = new JFrame();
-
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-		JPanel panel = new JPanel(){
-
-			public void paintComponent(Graphics g){
-
-				Graphics2D g2d = (Graphics2D)g;
-
-				int i;
-
-				int j;
-
-				for(i = 0; i < 100; i++){
-
-					for(j = 0; j < 100; j++){
-
-						if(lifeMap[i][j] == null){
-
-							g2d.setPaint(Color.WHITE);
-
-							g2d.fillRect(i * 8, j * 8, 8, 8);
-
-						}
-
-						else{
-
-							g2d.setPaint(Plat.lifeColor[lifeMap[i][j].getId()]);
-
-							g2d.fillRect(i * 8, j * 8, 8, 8);
-
-							if(lifeMap[i][j].getVirusList().size()>0){
-
-								g2d.setPaint(Color.BLACK);
-
-								g2d.fillRect(i * 8, j * 8 + 3, 8, 2);
-
-							}
-
-						}
-
-					}
-
-				}
-
-			}
-
-		};
-
-		JButton button = new JButton("Go A Round");
-
-		frame.getContentPane().add(BorderLayout.SOUTH,button);
-
-		frame.getContentPane().add(BorderLayout.CENTER,panel);
-
-		frame.setSize(800,900);
-
-		frame.setVisible(true);
-
-		ActionListener listener = new ActionListener(){
-
-			public void actionPerformed(ActionEvent event){
-
-				reproductionAndWitherStage();
-
-				newKindStage();
-
-				eatingStage();
-
-				huntingStage();
-
-				hungerStage();
-
-				saveAndDieStage();
-
-				newVirusStage();
-
-				countStage();
-
-				sectionRefreshStage();
-
-				resetStage();
-
-				frame.repaint();
-
-			}
-
-		};
-
-		button.addActionListener(listener);
-
-	}*/
-	/* 这个display已经没有了 */
 
 	public Life[][] getLifeMap(){
 
@@ -174,7 +60,7 @@ public class Plat implements Serializable{
 
 		public int compare(Life a, Life b){
 
-			return (b.getLevel() < a.getLevel() ? 1 : (b.getLevel() == a.getLevel() ? 0 : -1 ));
+			return (b.getFoodDemand() < a.getFoodDemand() ? 1 : (b.getFoodDemand() == a.getFoodDemand() ? 0 : -1 ));
 
 		}
 
@@ -183,6 +69,40 @@ public class Plat implements Serializable{
 	public void sortEatingAbility(ArrayList<Life> l){
 
 		Collections.sort(l,eatingAbilityComparator);
+
+	}
+
+	public ArrayList<Life> getMoreLifeAround(int x, int y, int d){
+
+		int i,j;
+
+		ArrayList<Life> a = new ArrayList<Life>();
+
+		for(i = x - d; i <= x + d; i++){
+
+			for(j = y - d; j <= y + d;j++){
+
+				if(i < 0 || i > 99 || j < 0 || j > 99 || (i == x && j == y)){
+
+					continue;
+
+				}
+
+				else{
+
+					if(lifeMap[i][j] != null){
+
+						a.add(lifeMap[i][j]);
+
+					}
+
+				}
+
+			}
+
+		}
+
+		return a;
 
 	}
 
@@ -651,7 +571,7 @@ public class Plat implements Serializable{
 
 				if(lifeMap[i][j] != null && !lifeMap[i][j].isSatisfied()){
 
-					ArrayList<Life> l = getLifeAround(i, j);
+					ArrayList<Life> l = getMoreLifeAround(i, j, (int)Math.floor(lifeMap[i][j].getLevel()));
 
 					int k;
 
@@ -661,11 +581,13 @@ public class Plat implements Serializable{
 
 							if(lifeMap[i][j].hunt(l.get(k))){
 
+								int d = (int)Math.floor(lifeMap[i][j].getLevel());
+
 								int p,q;
 
-								for(p = i - 1;p <= i + 1; p++){
+								for(p = i - d;p <= i + d; p++){
 
-									for(q = j - 1; q <= j + 1; q++){
+									for(q = j - d; q <= j + d; q++){
 
 										if(p < 0 || p > 99 || q < 0 || q > 99 || p == i && q ==j){
 
@@ -753,7 +675,7 @@ public class Plat implements Serializable{
 
 						Virus vv = v.get(k);
 
-						ArrayList<Life> l = getLifeAround(i, j);
+						ArrayList<Life> l = getMoreLifeAround(i, j, 5);
 
 						int p;
 

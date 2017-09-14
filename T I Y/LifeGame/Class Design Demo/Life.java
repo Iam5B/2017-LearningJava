@@ -20,10 +20,6 @@ public class Life{
 
 	}
 
-	public Life(){
-
-		kind = 0;
-
-	}
+	public Life(){}
 
 }

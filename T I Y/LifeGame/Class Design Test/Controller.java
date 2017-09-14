@@ -14,6 +14,8 @@ import java.io.ObjectOutputStream;
 
 public class Controller implements Serializable{
 
+	private int lifeNum;
+
 	private int landForm;
 
 	private Plat p;
@@ -134,7 +136,7 @@ public class Controller implements Serializable{
 
 							if(p.getLifeMap()[i][j].getVirusList().size()>0){
 
-								g2d.setPaint(Color.BLACK);
+								g2d.setPaint(p.lifeColor[p.getLifeMap()[i][j].getVirusList().get(0).getId() + 500]);
 
 								g2d.fillRect(i * 8, j * 8 + 3, 8, 2);
 
@@ -222,6 +224,38 @@ public class Controller implements Serializable{
 					thread.stop();
 
 					threadIsOpen = false;
+
+					int i,j;
+
+					int[] arr = new int[100];
+
+					int k;
+
+					for(k = 0; k < 100; k++){
+
+						arr[k] = 0;
+
+					}
+
+					for(i = 0; i < 100; i++){
+
+						for(j = 0; j < 100; j++){
+
+							if(p.getLifeMap()[i][j] != null){
+
+								arr[p.getLifeMap()[i][j].getId()]++;
+
+							}
+
+						}
+
+					}
+
+					for(k = 0; k < Life.nextId; k++){
+
+						System.out.println("物种" + k + "有" + arr[k] + "个");
+
+					}
 
 				}
 
@@ -446,7 +480,7 @@ public class Controller implements Serializable{
 
 		System.out.println("请输入初始物种数目(输入2333可以设置为七夕专属物种布局):");
 
-		int lifeNum = input.nextInt();
+		lifeNum = input.nextInt();
 
 		if(lifeNum == 2333){
 
