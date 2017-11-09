@@ -46,7 +46,7 @@ public class Widgets{
 		//textArea relies on the scroller ?!
 		textArea.setLineWrap(true);
 
-		scroller.serVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		scroller.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
 		scroller.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
@@ -57,6 +57,10 @@ public class Widgets{
 		textArea.append("additional words... ");
 
 		frame.getContentPane().add(panel2);
+
+		frame.setSize(300,600);
+
+		frame.setVisible(true);
 
 	}
 
